@@ -3,6 +3,7 @@ import tiktoken
 import openai
 from loguru import logger
 
+
 def validate_api_key(api_key: str) -> bool:
     """Validate OpenAI API key."""
     try:
@@ -13,10 +14,20 @@ def validate_api_key(api_key: str) -> bool:
         logger.error(f"Error validating API key: {e}")
         return False
 
-def init_session_state(key: str, default_value=None):
+
+def init_session_state():
     """Initialize session state if not exists."""
-    if key not in st.session_state:
-        st.session_state[key] = default_value
+    state_keys = {
+        "conversation": None,
+        "chat_history": None,
+        "process_complete": False,
+        "messages": [{"role": "assistant", "content": "Ask me anything about the uploaded documents."}]
+    }
+
+    for key, value in state_keys.items():
+        if key not in st.session_state:
+            st.session_state[key] = value
+
 
 def count_tokens(text: str) -> int:
     """Count the number of tokens in a text."""

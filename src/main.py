@@ -20,11 +20,7 @@ def main():
     st.title("_Ask Me Anything_ :palm_tree:")
 
     # 세션 상태 초기화
-    init_session_state("conversation")
-    init_session_state("chat_history")
-    init_session_state("process_complete", False)
-    init_session_state("messages", [
-                       {"role": "assistant", "content": "Ask me anything about the uploaded documents."}])
+    init_session_state()
 
     # 사이드바 UI 구성
     with st.sidebar:

@@ -30,7 +30,7 @@ LaChat은 문서 기반 대화형 AI 챗봇 애플리케이션입니다. 사용�
 
 1. 애플리케이션을 실행합니다:
    ```
-   streamlit run main.py
+   streamlit run src/main.py
    ```
 
 2. 사이드바에서 문서를 업로드하고 "Start Processing" 버튼을 클릭합니다.

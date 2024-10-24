@@ -1,6 +1,8 @@
 # LaChat
 
-LaChat은 문서 기반 대화형 AI 챗봇 애플리케이션입니다. 사용자가 업로드한 문서를 분석하여 관련 질문에 답변할 수 있는 지능형 assistant입니다.
+![thumbnail](/assets/thumbnail.png)
+
+LaChat은 RAG 기반 AI 챗봇 애플리케이션입니다. 사용자가 업로드한 문서를 분석하여 관련 질문에 답변합니다.
 
 ## 주요 기능
 
@@ -37,7 +39,10 @@ LaChat은 문서 기반 대화형 AI 챗봇 애플리케이션입니다. 사용�
 
 3. 문서 처리가 완료되면, 채팅 인터페이스에서 질문을 입력합니다.
 
-4. AI assistant의 답변을 확인하고, 필요한 경우 소스 문서를 확인합니다.
+4. AI assistant의 답변을 확인합니다.
+
+5. 필요한 경우 답변을 클립보드에 복사합니다.
+  ![copy](/assets/copy_to_clipboard.png)
 
 ## 주의사항
 

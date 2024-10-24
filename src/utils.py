@@ -23,7 +23,7 @@ def init_session_state():
         "chat_history": None,
         "process_complete": False,
         "copy_buttons": {},
-        "messages": [{"role": "assistant", "content": "Ask me anything about the uploaded documents."}]
+        "messages": [{"role": "assistant", "content": "업로드한 문서에 대해 질문해주세요."}]
     }
 
     for key, value in state_keys.items():

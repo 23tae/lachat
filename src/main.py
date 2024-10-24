@@ -20,7 +20,7 @@ def main():
 
     # Streamlit 페이지 설정
     st.set_page_config(page_title="LaChat", page_icon=":seedling:")
-    st.title("_Ask Me Anything_ :palm_tree:")
+    st.title("무엇을 도와드릴까요? :palm_tree:")
 
     # 세션 상태 초기화
     init_session_state()
@@ -60,8 +60,11 @@ def main():
             st.markdown(message["content"])
             if message["role"] == "assistant":
                 button_key = f"copy_button_{i}"
-                if st.button("📋", key=button_key, help="Copy response"):
-                    copy_to_clipboard(message["content"])
+                if st.button("📋", key=button_key, help="Copy"):
+                    if copy_to_clipboard(message["content"]):
+                        st.toast("클립보드에 복사되었습니다!", icon="✅")
+                    else:
+                        st.toast("복사에 실패했습니다. 다시 시도해주세요.", icon="❌")
                     st.session_state.copy_buttons[button_key] = True
 
     # 사용자 입력 처리
@@ -87,8 +90,11 @@ def main():
 
                 st.markdown(response)
                 button_key = f"copy_button_{len(st.session_state.messages)}"
-                if st.button("📋", key=button_key, help="Copy response"):
-                    copy_to_clipboard(response)
+                if st.button("📋", key=button_key, help="Copy"):
+                    if copy_to_clipboard(response):
+                        st.toast("클립보드에 복사되었습니다!", icon="✅")
+                    else:
+                        st.toast("복사에 실패했습니다. 다시 시도해주세요.", icon="❌")
                     st.session_state.copy_buttons[button_key] = True
 
                 with st.expander("View Source Documents"):

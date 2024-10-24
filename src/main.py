@@ -10,6 +10,9 @@ from vector_store import create_vector_store
 from conversation_chain import create_conversation_chain
 
 
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+
 def main():
     # 환경 변수 로드 및 기본 API 키 설정
     load_dotenv()

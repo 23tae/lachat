@@ -4,7 +4,7 @@ from loguru import logger
 from dotenv import load_dotenv
 from langchain_community.callbacks import get_openai_callback
 
-from utils import validate_api_key, init_session_state
+from utils import validate_api_key, init_session_state, on_click_copy
 from document_processor import process_documents, split_documents
 from vector_store import create_vector_store
 from conversation_chain import create_conversation_chain
@@ -21,6 +21,7 @@ def main():
 
     # 세션 상태 초기화
     init_session_state()
+    count = 0
 
     # 사이드바 UI 구성
     with st.sidebar:
@@ -78,6 +79,10 @@ def main():
                 source_documents = result['source_documents']
 
                 st.markdown(response)
+                st.button("📋", on_click=on_click_copy,
+                          args=(response, ), key=count)
+                logger.info(f"Current Count: {count}")
+                count += 1
                 with st.expander("View Source Documents"):
                     for doc in source_documents:
                         st.markdown(

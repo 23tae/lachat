@@ -2,6 +2,7 @@ import streamlit as st
 import tiktoken
 import openai
 from loguru import logger
+import pyperclip
 
 
 def validate_api_key(api_key: str) -> bool:
@@ -34,3 +35,7 @@ def count_tokens(text: str) -> int:
     tokenizer = tiktoken.get_encoding("cl100k_base")
     tokens = tokenizer.encode(text)
     return len(tokens)
+
+
+def on_click_copy(text):
+    pyperclip.copy(text)

@@ -4,7 +4,7 @@ from loguru import logger
 from dotenv import load_dotenv
 from langchain_community.callbacks import get_openai_callback
 
-from utils import validate_api_key, init_session_state, on_click_copy
+from utils import validate_api_key, init_session_state, copy_to_clipboard
 from document_processor import process_documents, split_documents
 from vector_store import create_vector_store
 from conversation_chain import create_conversation_chain
@@ -24,7 +24,6 @@ def main():
 
     # 세션 상태 초기화
     init_session_state()
-    count = 0
 
     # 사이드바 UI 구성
     with st.sidebar:
@@ -56,9 +55,14 @@ def main():
         st.success("Documents processed successfully!")
 
     # 채팅 메시지 표시
-    for message in st.session_state.messages:
+    for i, message in enumerate(st.session_state.messages):
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
+            if message["role"] == "assistant":
+                button_key = f"copy_button_{i}"
+                if st.button("📋", key=button_key, help="Copy response"):
+                    copy_to_clipboard(message["content"])
+                    st.session_state.copy_buttons[button_key] = True
 
     # 사용자 입력 처리
     if query := st.chat_input("Enter your question."):
@@ -82,10 +86,11 @@ def main():
                 source_documents = result['source_documents']
 
                 st.markdown(response)
-                st.button("📋", on_click=on_click_copy,
-                          args=(response, ), key=count)
-                logger.info(f"Current Count: {count}")
-                count += 1
+                button_key = f"copy_button_{len(st.session_state.messages)}"
+                if st.button("📋", key=button_key, help="Copy response"):
+                    copy_to_clipboard(response)
+                    st.session_state.copy_buttons[button_key] = True
+
                 with st.expander("View Source Documents"):
                     for doc in source_documents:
                         st.markdown(

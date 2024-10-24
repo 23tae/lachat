@@ -22,6 +22,7 @@ def init_session_state():
         "conversation": None,
         "chat_history": None,
         "process_complete": False,
+        "copy_buttons": {},
         "messages": [{"role": "assistant", "content": "Ask me anything about the uploaded documents."}]
     }
 
@@ -37,5 +38,13 @@ def count_tokens(text: str) -> int:
     return len(tokens)
 
 
-def on_click_copy(text):
-    pyperclip.copy(text)
+def copy_to_clipboard(text):
+    """
+    클립보드에 텍스트를 복사
+    """
+    try:
+        pyperclip.copy(text)
+        return True
+    except Exception as e:
+        logger.error(f"Failed to copy text: {e}")
+        return False

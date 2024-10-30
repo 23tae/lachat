@@ -164,6 +164,7 @@ cython_debug/
 # directories
 data/
 test/
+.cache/
 
 # etc
 .DS_Store

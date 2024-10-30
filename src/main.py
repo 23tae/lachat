@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 from langchain_community.callbacks import get_openai_callback
 
 from utils import validate_api_key, init_session_state, copy_to_clipboard
-from document_processor import process_documents, split_documents
-from vector_store import create_vector_store
+from document_processor import split_documents, DocumentProcessor
+from vector_store import VectorStoreManager
 from conversation_chain import create_conversation_chain
 
 
@@ -45,12 +45,26 @@ def main():
 
         # 문서 처리 및 벡터 저장소 생성
         with st.spinner("Processing documents..."):
-            documents = process_documents(uploaded_files)
+            doc_processor = DocumentProcessor()
+            vector_store_manager = VectorStoreManager()
+
+            documents, cached_docs_count = doc_processor.process_documents(
+                uploaded_files)
             text_chunks = split_documents(documents)
-            vector_store = create_vector_store(text_chunks)
+            vector_store, from_cache = vector_store_manager.create_vector_store(
+                text_chunks)
+
             st.session_state.conversation = create_conversation_chain(
                 vector_store, openai_api_key)
             st.session_state.process_complete = True
+
+            if cached_docs_count > 0:
+                cached_status = "재사용된 문서" if cached_docs_count == len(
+                    uploaded_files) else "일부 재사용된 문서"
+                vs_status = "재사용된" if from_cache else "새로 생성된"
+                st.info(f"{cached_status}와 {vs_status} 벡터 스토어를 사용하여 처리되었습니다.")
+            else:
+                st.info("모든 문서가 새로 처리되었습니다.")
 
         st.success("Documents processed successfully!")
 

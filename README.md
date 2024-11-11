@@ -10,6 +10,12 @@ LaChat은 RAG 기반 AI 챗봇 애플리케이션입니다. 사용자가 업로�
 - 문서 내용 기반 질의응답
 - 대화 기록 유지
 
+## 사용 기술
+
+* [![LangChain]][LangChain url]
+* [![OpenAI]][OpenAI url]
+* [![Hugging Face]][Hugging Face url]
+
 ## 설치 방법
 
 1. 가상 환경을 생성하고 활성화합니다:
@@ -48,3 +54,11 @@ LaChat은 RAG 기반 AI 챗봇 애플리케이션입니다. 사용자가 업로�
 
 - 이 애플리케이션은 OpenAI API를 사용하므로, API 사용에 따른 비용이 발생할 수 있습니다.
 - 대용량 문서를 처리할 때는 시간이 걸릴 수 있습니다.
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[LangChain]: https://img.shields.io/badge/langchain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white
+[LangChain url]: https://python.langchain.com/
+[OpenAI]: https://img.shields.io/badge/openai-412991?style=for-the-badge&logo=openai&logoColor=white
+[OpenAi url]: https://openai.com/
+[Hugging Face]: https://img.shields.io/badge/huggingface-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black
+[Hugging Face url]: https://huggingface.co/

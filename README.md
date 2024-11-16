@@ -15,6 +15,7 @@ LaChat은 RAG 기반 AI 챗봇 애플리케이션입니다. 사용자가 업로�
 * [![LangChain]][LangChain url]
 * [![OpenAI]][OpenAI url]
 * [![Hugging Face]][Hugging Face url]
+* [![Streamlit]][Streamlit url]
 
 ## 설치 방법
 
@@ -62,3 +63,5 @@ LaChat은 RAG 기반 AI 챗봇 애플리케이션입니다. 사용자가 업로�
 [OpenAi url]: https://openai.com/
 [Hugging Face]: https://img.shields.io/badge/huggingface-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black
 [Hugging Face url]: https://huggingface.co/
+[Streamlit]: https://img.shields.io/badge/streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white
+[Streamlit url]: https://streamlit.io/
